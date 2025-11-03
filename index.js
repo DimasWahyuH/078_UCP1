@@ -22,7 +22,7 @@ db.sequelize.sync()
 app.post("/Buku", async (req, res) => {
     const data =req.body;
     try {
-        const buku = await db.buku.create(data);
+        const buku = await db.Buku.create(data);
         res.send(buku);
     } catch (err) {
         res.send(err);
@@ -31,7 +31,7 @@ app.post("/Buku", async (req, res) => {
 
 app.get("/Buku", async (req, res) => {
     try {
-        const buku = await db.buku.findAll();
+        const buku = await db.Buku.findAll();
         res.send(buku);
     } catch (err) {
         res.send(err);
@@ -44,7 +44,7 @@ app.put("/Buku/:id", async (req, res) => {
 
     try {
         // gunakan nama model yang benar (besar )
-        const buku = await db.buku.findByPk(id);
+        const buku = await db.Buku.findByPk(id);
         if (!buku) {
             return res.status(404).send({ message: "Buku tidak ditemukan" });
         }
@@ -59,7 +59,7 @@ app.put("/Buku/:id", async (req, res) => {
 app.delete("/Buku/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const buku = await db.buku.findByPk(id);
+        const buku = await db.Buku.findByPk(id);
         if (!buku) {
             return res.status(404).send({ message: "buku tidak ditemukan" });
         }
